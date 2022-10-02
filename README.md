@@ -11,11 +11,8 @@ full customization, to use the device in ways never envisioned.
 
 Sunshine!
 
-## Development
-
-To build your own firmware you need a GNU/Linux, BSD or MacOSX system (case
-sensitive filesystem required). Cygwin is unsupported because of the lack of a
-case sensitive file system.
+### Information
+This is a fork of the Orange Pi R1 Plus / R1 Plus LTS sourcecode with minimal packages. The default language is set to English.
 
 ### Requirements
 
@@ -24,25 +21,36 @@ distributions. A complete list with distribution specific packages is found in
 the [Build System Setup](https://openwrt.org/docs/guide-developer/build-system/install-buildsystem)
 documentation.
 
-```
-binutils bzip2 diff find flex gawk gcc-6+ getopt grep install libc-dev libz-dev
-make4.1+ perl python3.6+ rsync subversion unzip which
-```
+### Quikstart Guide to Build Orange Pi R1 Plus / R1 Plus LTS Firmware
 
-### Quickstart
+You will need to build the firmware using branch openwrt-21.02, not the master branch
 
-1. Run `./scripts/feeds update -a` to obtain all the latest package definitions
-   defined in feeds.conf / feeds.conf.default
+`git clone https://github.com/vantechcorner/openwrt-orangepi.git`
+`cd openwrt`
+`git branch -a`
+`git checkout openwrt-21.02`
+`./scripts/feeds update -a`
+`./scripts/feeds install -a`
 
-2. Run `./scripts/feeds install -a` to install symlinks for all obtained
-   packages into package/feeds/
+Run `make menuconfig` and configure the target system & firmware packages.
+For the first build, run the below commands to download tool/packages and compile:
 
-3. Run `make menuconfig` to select your preferred configuration for the
-   toolchain, target system & firmware packages.
+`make download -j8`
+`make V=s -j1`
 
-4. Run `make` to build your firmware. This will download all sources, build the
-   cross-compile toolchain and then cross-compile the GNU/Linux kernel & all chosen
-   applications for your target system.
+It is suggested to build with single thread. You can also build with multi-thread:
+
+`make V=s -j$(nproc)`
+
+For the second build 
+`cd openwrt`
+`git pull`
+`./scripts/feeds update -a`
+`./scripts/feeds install -a`
+`make defconfig`
+`make download -j8`
+`make V=s -j$(nproc)`
+
 
 ### Related Repositories
 
