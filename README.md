@@ -11,11 +11,8 @@ full customization, to use the device in ways never envisioned.
 
 Sunshine!
 
-## Development
-
-To build your own firmware you need a GNU/Linux, BSD or MacOSX system (case
-sensitive filesystem required). Cygwin is unsupported because of the lack of a
-case sensitive file system.
+### Information
+This is a fork of the Orange Pi R1 Plus/ R1 Plus LTS source code with minimal packages. The default language is set to English. Default LAN IP address is 192.168.2.1.
 
 ### Requirements
 
@@ -24,25 +21,43 @@ distributions. A complete list with distribution specific packages is found in
 the [Build System Setup](https://openwrt.org/docs/guide-developer/build-system/install-buildsystem)
 documentation.
 
+### Quikstart Guide to Build Orange Pi R1 Plus / R1 Plus LTS Firmware
+
+You will need to build the firmware using branch **openwrt-21.02**, not the master branch
+
 ```
-gcc binutils bzip2 flex python3 perl make find grep diff unzip gawk getopt
-subversion libz-dev libc-dev rsync which
+git clone https://github.com/vantechcorner/openwrt-orangepi.git
+cd openwrt
+git branch -a
+git checkout openwrt-21.02
+./scripts/feeds update -a
+./scripts/feeds install -a 
 ```
 
-### Quickstart
+Run `make menuconfig` and configure the target system & firmware packages.
+For the first build, run the below commands to download tool/packages and compile:
 
-1. Run `./scripts/feeds update -a` to obtain all the latest package definitions
-   defined in feeds.conf / feeds.conf.default
+```
+make download -j8
+make V=s -j1
+```
 
-2. Run `./scripts/feeds install -a` to install symlinks for all obtained
-   packages into package/feeds/
+It is suggested to build with single thread. You can also build with multi-thread:
 
-3. Run `make menuconfig` to select your preferred configuration for the
-   toolchain, target system & firmware packages.
+`make V=s -j$(nproc)`
 
-4. Run `make` to build your firmware. This will download all sources, build the
-   cross-compile toolchain and then cross-compile the GNU/Linux kernel & all chosen
-   applications for your target system.
+For the second build 
+```
+cd openwrt
+git pull
+./scripts/feeds update -a
+./scripts/feeds install -a
+make defconfig
+make download -j8
+make V=s -j$(nproc)
+```
+### Download Firmware
+If you don't want to compile the firmware yourself, you can download it from [here](https://vantc.net/orange-pi-r1-plus-lts-openwrt-firmware-english-minimal-packages.html). The .config template for GitHub Actions is also available there.
 
 ### Related Repositories
 
@@ -59,6 +74,9 @@ packages to OpenWrt, please find the fitting repository below.
 
 * [OpenWrt Routing](https://github.com/openwrt/routing): Packages specifically
   focused on (mesh) routing.
+
+* [OpenWrt Video](https://github.com/openwrt/video): Packages specifically
+  focused on display servers and clients (Xorg and Wayland).
 
 ## Support Information
 
