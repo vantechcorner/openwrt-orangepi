@@ -12,7 +12,7 @@ full customization, to use the device in ways never envisioned.
 Sunshine!
 
 ### Information
-This is a fork of the Orange Pi R1 Plus / R1 Plus LTS sourcecode with minimal packages. The default language is set to English.
+This is a fork of the Orange Pi R1 Plus/ R1 Plus LTS source code with minimal packages. The default language is set to English. Default LAN IP address is 192.168.2.1.
 
 ### Requirements
 
