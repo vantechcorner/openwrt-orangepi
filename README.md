@@ -23,34 +23,41 @@ documentation.
 
 ### Quikstart Guide to Build Orange Pi R1 Plus / R1 Plus LTS Firmware
 
-You will need to build the firmware using branch openwrt-21.02, not the master branch
+You will need to build the firmware using branch **openwrt-21.02**, not the master branch
 
-`git clone https://github.com/vantechcorner/openwrt-orangepi.git`
-`cd openwrt`
-`git branch -a`
-`git checkout openwrt-21.02`
-`./scripts/feeds update -a`
-`./scripts/feeds install -a`
+```
+git clone https://github.com/vantechcorner/openwrt-orangepi.git
+cd openwrt
+git branch -a
+git checkout openwrt-21.02
+./scripts/feeds update -a
+./scripts/feeds install -a 
+```
 
 Run `make menuconfig` and configure the target system & firmware packages.
 For the first build, run the below commands to download tool/packages and compile:
 
-`make download -j8`
-`make V=s -j1`
+```
+make download -j8
+make V=s -j1
+```
 
 It is suggested to build with single thread. You can also build with multi-thread:
 
 `make V=s -j$(nproc)`
 
 For the second build 
-`cd openwrt`
-`git pull`
-`./scripts/feeds update -a`
-`./scripts/feeds install -a`
-`make defconfig`
-`make download -j8`
-`make V=s -j$(nproc)`
-
+```
+cd openwrt
+git pull
+./scripts/feeds update -a
+./scripts/feeds install -a
+make defconfig
+make download -j8
+make V=s -j$(nproc)
+```
+### Download Firmware
+If you don't want to compile the firmware yourself, you can download it from [here](https://vantc.net/orange-pi-r1-plus-lts-openwrt-firmware-english-minimal-packages.html). The .config template for GitHub Actions is also available there.
 
 ### Related Repositories
 
