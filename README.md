@@ -27,7 +27,7 @@ You will need to build the firmware using branch **openwrt-21.02**, not the mast
 
 ```
 git clone https://github.com/vantechcorner/openwrt-orangepi.git
-cd openwrt
+cd openwrt-orangepi
 git branch -a
 git checkout openwrt-21.02
 ./scripts/feeds update -a
@@ -48,7 +48,7 @@ It is suggested to build with single thread. You can also build with multi-threa
 
 For the second build 
 ```
-cd openwrt
+cd openwrt-orangepi
 git pull
 ./scripts/feeds update -a
 ./scripts/feeds install -a
