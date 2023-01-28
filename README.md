@@ -34,7 +34,7 @@ git checkout openwrt-21.02
 ./scripts/feeds install -a 
 ```
 
-Run `make menuconfig` and configure the target system & firmware packages.
+Run `make menuconfig` and configure the target system as "Rockchip" & firmware packages.
 For the first build, run the below commands to download tool/packages and compile:
 
 ```
